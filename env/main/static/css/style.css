@@ -22,6 +22,12 @@ a.navbar-brand{
 }
 
 /* header styling*/
+h2{
+    color: palevioletred;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 15px;
+}
+
 h3{
     color: palevioletred;
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -32,6 +38,10 @@ h3{
 .img-thumbnail{
     padding:10px;
     border: none;
+}
+
+figure figcaption{
+    text-align: center;
 }
 
 /* fontstyling for text*/
