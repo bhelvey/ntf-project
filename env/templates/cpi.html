@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <title>Inflation</title>
@@ -11,7 +10,6 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    
     <!--Navbar adjustments-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -19,7 +17,6 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">    
                     <li class="nav-item dropdown">
@@ -37,7 +34,6 @@
                             <a class="dropdown-item" href="analysis">How Does It All Tie Together?</a>
                             <!-- Machine Learning -->
                             <a class="dropdown-item" href="ML">Machine Learning: Predicting the Future?</a>
-                            
                         </div>
                         <a class="nav-link" href="data">Data</a>
                     </li>
@@ -45,34 +41,32 @@
             </div>
         </div>
     </nav>
-    
-
-    <!--temprature content adjustments-->
     <div class="container content">
         <div class="row">
             <div class="col-md-8">
                 <div class="col-md-12">
                     <h3>Consumer Price Index: The Cost of Living</h3>
                     <hr>
-                    <!-- insert image here -->
-
-                    <img src="../static/images/newplot.png" width="100%" alt="minimum wage chart">
-
+                    <img src="../static/images/newplot.png" width="100%" alt="miniwage chart">
                     <br>
                     <p>The Consumer Price Index (CPI) is a tool to measure the change of prices paid by consumers over time. It is measured by averaging price changes for a variety of various goods and services, such as food, medical care, housing, and transportation. Though the 
                         government has data for the CPI as far back as 1913, the base years that economists use to determine the rate of change is the time frame between 1982-1984, when the CPI is at 100. Though it isn't blatantly explained why, based on research this is because this is when the Bureau of Labor Statistics was 
                         created and a time when the economy was seeing big changes, and it just was easier and convenient to start there.
                     </p>
+                    <br>
+                    <img src="../static/images/cpioneyearForecast.png" width="100%" alt="cpi forecast chart">
+                    <p>
+                        Using the model we were able to see the upward trend and is around 263 with 
+                        the slight pull back in october for a spike in winter. The values arent too
+                        askew from Bureau of Labor Statisticsposting of 259 in july. 
+                    </p>
                 </div>
             </div>     
         </div>    
     </div>
-
 </body>
-
 <footer>
     <div class="footer">&copy;Brantax&trade;<br>
     Anton Mendoza, Max Winder, and Brandon Hevley </div>
 </footer>
-
 </html>

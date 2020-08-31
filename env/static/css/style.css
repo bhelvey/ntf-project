@@ -1,15 +1,15 @@
 /* navbar styling*/
-a.navbar-brand{
+.navbar-brand{
     margin-left: 10px;
     padding: 10px;
-    background-color: palevioletred;
+    background-color: rgb(255, 153, 0);
     font-family: 'Times New Roman', Times, serif;
     font-size: 25px;
 }
 
 /*footer styling*/
 .page-footer{
-    background-color: rgb(92, 90, 90);
+    background-color: rgb(150, 49, 3);
     margin-top: 50px;
     position: fixed;
     bottom: 0;
@@ -23,13 +23,13 @@ a.navbar-brand{
 
 /* header styling*/
 h2{
-    color: palevioletred;
+    color: rgb(255, 153, 0);
     font-family: Georgia, 'Times New Roman', Times, serif;
     padding: 15px;
 }
 
 h3{
-    color: palevioletred;
+    color: rgb(255, 153, 0);
     font-family: Georgia, 'Times New Roman', Times, serif;
     padding: 15px;
 }
@@ -114,7 +114,7 @@ tr>td:nth-child(10) {
 /* small screen adjustments*/
 @media(max-width:767px){
     .navbar.bg-light{
-        background-color: palevioletred!important;    
+        background-color: rgb(255, 153, 0)!important;    
     }
 
     .navbar-collapse{
