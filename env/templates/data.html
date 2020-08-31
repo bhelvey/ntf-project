@@ -1,0 +1,5494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Inflation</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    
+    <!--Navbar adjustments-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand text-white" href="/" >Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Plots
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <!-- wages -->
+                            <a class="dropdown-item" href="wages">Wages</a>
+                            <!-- Cost of Living -->
+                            <a class="dropdown-item" href="cpi">Cost of Living</a>
+                            <!-- inflation -->
+                            <a class="dropdown-item" href="inflation">Inflation</a>
+                            <!-- How It Ties Together -->
+                            <a class="dropdown-item" href="analysis">How Does It All Tie Together?</a>
+                            <!-- Machine Learning -->
+                            <a class="dropdown-item" href="ML">Machine Learning: Predicting the Future?</a>
+                            
+                        </div>
+                        <a class="nav-link" href="data">Data</a> 
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!--Get the csv data as table-->
+  <div class="container content bg-white">
+    <h3>Data</h3>
+    <hr>
+    <p></p>
+    <br>
+
+    <table class="table table-striped">
+        <thead><tr><th title="Field #1">DATE</th>
+        <th title="Field #2">Index</th>
+        <th title="Field #3">Inflation</th>
+        <th title="Field #4">Minimum Wage</th>
+        </tr></thead>
+        <tbody><tr>
+        <td>1938-10-01</td>
+        <td align="right">14.0</td>
+        <td align="right">-0.71</td>
+        <td align="right">0.25</td>
+        </tr>
+        <tr>
+        <td>1938-11-01</td>
+        <td align="right">14.0</td>
+        <td align="right">0.0</td>
+        <td align="right">0.25</td>
+        </tr>
+        <tr>
+        <td>1938-12-01</td>
+        <td align="right">14.0</td>
+        <td align="right">0.0</td>
+        <td align="right">0.25</td>
+        </tr>
+        <tr>
+        <td>1939-01-01</td>
+        <td align="right">14.0</td>
+        <td align="right">0.0</td>
+        <td align="right">0.25</td>
+        </tr>
+        <tr>
+        <td>1939-02-01</td>
+        <td align="right">13.9</td>
+        <td align="right">-0.71</td>
+        <td align="right">0.25</td>
+        </tr>
+        <tr>
+        <td>1939-03-01</td>
+        <td align="right">13.9</td>
+        <td align="right">0.0</td>
+        <td align="right">0.25</td>
+        </tr>
+        <tr>
+        <td>1939-04-01</td>
+        <td align="right">13.8</td>
+        <td align="right">-0.72</td>
+        <td align="right">0.25</td>
+        </tr>
+        <tr>
+        <td>1939-05-01</td>
+        <td align="right">13.8</td>
+        <td align="right">0.0</td>
+        <td align="right">0.25</td>
+        </tr>
+        <tr>
+        <td>1939-06-01</td>
+        <td align="right">13.8</td>
+        <td align="right">0.0</td>
+        <td align="right">0.25</td>
+        </tr>
+        <tr>
+        <td>1939-07-01</td>
+        <td align="right">13.8</td>
+        <td align="right">0.0</td>
+        <td align="right">0.25</td>
+        </tr>
+        <tr>
+        <td>1939-08-01</td>
+        <td align="right">13.8</td>
+        <td align="right">0.0</td>
+        <td align="right">0.25</td>
+        </tr>
+        <tr>
+        <td>1939-09-01</td>
+        <td align="right">14.1</td>
+        <td align="right">2.17</td>
+        <td align="right">0.25</td>
+        </tr>
+        <tr>
+        <td>1939-10-01</td>
+        <td align="right">14.0</td>
+        <td align="right">-0.71</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1939-11-01</td>
+        <td align="right">14.0</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1939-12-01</td>
+        <td align="right">14.0</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1940-01-01</td>
+        <td align="right">13.9</td>
+        <td align="right">-0.71</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1940-02-01</td>
+        <td align="right">14.0</td>
+        <td align="right">0.72</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1940-03-01</td>
+        <td align="right">14.0</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1940-04-01</td>
+        <td align="right">14.0</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1940-05-01</td>
+        <td align="right">14.0</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1940-06-01</td>
+        <td align="right">14.1</td>
+        <td align="right">0.71</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1940-07-01</td>
+        <td align="right">14.0</td>
+        <td align="right">-0.71</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1940-08-01</td>
+        <td align="right">14.0</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1940-09-01</td>
+        <td align="right">14.0</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1940-10-01</td>
+        <td align="right">14.0</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1940-11-01</td>
+        <td align="right">14.0</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1940-12-01</td>
+        <td align="right">14.1</td>
+        <td align="right">0.71</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1941-01-01</td>
+        <td align="right">14.1</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1941-02-01</td>
+        <td align="right">14.1</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1941-03-01</td>
+        <td align="right">14.2</td>
+        <td align="right">0.71</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1941-04-01</td>
+        <td align="right">14.3</td>
+        <td align="right">0.7</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1941-05-01</td>
+        <td align="right">14.4</td>
+        <td align="right">0.7</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1941-06-01</td>
+        <td align="right">14.7</td>
+        <td align="right">2.08</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1941-07-01</td>
+        <td align="right">14.7</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1941-08-01</td>
+        <td align="right">14.9</td>
+        <td align="right">1.36</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1941-09-01</td>
+        <td align="right">15.1</td>
+        <td align="right">1.34</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1941-10-01</td>
+        <td align="right">15.3</td>
+        <td align="right">1.32</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1941-11-01</td>
+        <td align="right">15.4</td>
+        <td align="right">0.65</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1941-12-01</td>
+        <td align="right">15.5</td>
+        <td align="right">0.65</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1942-01-01</td>
+        <td align="right">15.7</td>
+        <td align="right">1.29</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1942-02-01</td>
+        <td align="right">15.8</td>
+        <td align="right">0.64</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1942-03-01</td>
+        <td align="right">16.0</td>
+        <td align="right">1.27</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1942-04-01</td>
+        <td align="right">16.1</td>
+        <td align="right">0.63</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1942-05-01</td>
+        <td align="right">16.3</td>
+        <td align="right">1.24</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1942-06-01</td>
+        <td align="right">16.3</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1942-07-01</td>
+        <td align="right">16.4</td>
+        <td align="right">0.61</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1942-08-01</td>
+        <td align="right">16.5</td>
+        <td align="right">0.61</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1942-09-01</td>
+        <td align="right">16.5</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1942-10-01</td>
+        <td align="right">16.7</td>
+        <td align="right">1.21</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1942-11-01</td>
+        <td align="right">16.8</td>
+        <td align="right">0.6</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1942-12-01</td>
+        <td align="right">16.9</td>
+        <td align="right">0.6</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1943-01-01</td>
+        <td align="right">16.9</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1943-02-01</td>
+        <td align="right">16.9</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1943-03-01</td>
+        <td align="right">17.2</td>
+        <td align="right">1.78</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1943-04-01</td>
+        <td align="right">17.4</td>
+        <td align="right">1.16</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1943-05-01</td>
+        <td align="right">17.5</td>
+        <td align="right">0.57</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1943-06-01</td>
+        <td align="right">17.5</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1943-07-01</td>
+        <td align="right">17.4</td>
+        <td align="right">-0.57</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1943-08-01</td>
+        <td align="right">17.3</td>
+        <td align="right">-0.57</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1943-09-01</td>
+        <td align="right">17.4</td>
+        <td align="right">0.58</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1943-10-01</td>
+        <td align="right">17.4</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1943-11-01</td>
+        <td align="right">17.4</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1943-12-01</td>
+        <td align="right">17.4</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1944-01-01</td>
+        <td align="right">17.4</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1944-02-01</td>
+        <td align="right">17.4</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1944-03-01</td>
+        <td align="right">17.4</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1944-04-01</td>
+        <td align="right">17.5</td>
+        <td align="right">0.57</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1944-05-01</td>
+        <td align="right">17.5</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1944-06-01</td>
+        <td align="right">17.6</td>
+        <td align="right">0.57</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1944-07-01</td>
+        <td align="right">17.7</td>
+        <td align="right">0.57</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1944-08-01</td>
+        <td align="right">17.7</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1944-09-01</td>
+        <td align="right">17.7</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1944-10-01</td>
+        <td align="right">17.7</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1944-11-01</td>
+        <td align="right">17.7</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1944-12-01</td>
+        <td align="right">17.8</td>
+        <td align="right">0.56</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1945-01-01</td>
+        <td align="right">17.8</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1945-02-01</td>
+        <td align="right">17.8</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1945-03-01</td>
+        <td align="right">17.8</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1945-04-01</td>
+        <td align="right">17.8</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1945-05-01</td>
+        <td align="right">17.9</td>
+        <td align="right">0.56</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1945-06-01</td>
+        <td align="right">18.1</td>
+        <td align="right">1.12</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1945-07-01</td>
+        <td align="right">18.1</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1945-08-01</td>
+        <td align="right">18.1</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1945-09-01</td>
+        <td align="right">18.1</td>
+        <td align="right">0.0</td>
+        <td align="right">0.3</td>
+        </tr>
+        <tr>
+        <td>1945-10-01</td>
+        <td align="right">18.1</td>
+        <td align="right">0.0</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1945-11-01</td>
+        <td align="right">18.1</td>
+        <td align="right">0.0</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1945-12-01</td>
+        <td align="right">18.2</td>
+        <td align="right">0.55</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1946-01-01</td>
+        <td align="right">18.2</td>
+        <td align="right">0.0</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1946-02-01</td>
+        <td align="right">18.1</td>
+        <td align="right">-0.55</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1946-03-01</td>
+        <td align="right">18.3</td>
+        <td align="right">1.1</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1946-04-01</td>
+        <td align="right">18.4</td>
+        <td align="right">0.55</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1946-05-01</td>
+        <td align="right">18.5</td>
+        <td align="right">0.54</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1946-06-01</td>
+        <td align="right">18.7</td>
+        <td align="right">1.08</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1946-07-01</td>
+        <td align="right">19.8</td>
+        <td align="right">5.88</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1946-08-01</td>
+        <td align="right">20.2</td>
+        <td align="right">2.02</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1946-09-01</td>
+        <td align="right">20.4</td>
+        <td align="right">0.99</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1946-10-01</td>
+        <td align="right">20.8</td>
+        <td align="right">1.96</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1946-11-01</td>
+        <td align="right">21.3</td>
+        <td align="right">2.4</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1946-12-01</td>
+        <td align="right">21.5</td>
+        <td align="right">0.94</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1947-01-01</td>
+        <td align="right">21.5</td>
+        <td align="right">0.0</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1947-02-01</td>
+        <td align="right">21.5</td>
+        <td align="right">0.0</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1947-03-01</td>
+        <td align="right">21.9</td>
+        <td align="right">1.86</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1947-04-01</td>
+        <td align="right">21.9</td>
+        <td align="right">0.0</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1947-05-01</td>
+        <td align="right">21.9</td>
+        <td align="right">0.0</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1947-06-01</td>
+        <td align="right">22.0</td>
+        <td align="right">0.46</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1947-07-01</td>
+        <td align="right">22.2</td>
+        <td align="right">0.91</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1947-08-01</td>
+        <td align="right">22.5</td>
+        <td align="right">1.35</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1947-09-01</td>
+        <td align="right">23.0</td>
+        <td align="right">2.22</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1947-10-01</td>
+        <td align="right">23.0</td>
+        <td align="right">0.0</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1947-11-01</td>
+        <td align="right">23.1</td>
+        <td align="right">0.43</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1947-12-01</td>
+        <td align="right">23.4</td>
+        <td align="right">1.3</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1948-01-01</td>
+        <td align="right">23.7</td>
+        <td align="right">1.28</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1948-02-01</td>
+        <td align="right">23.5</td>
+        <td align="right">-0.84</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1948-03-01</td>
+        <td align="right">23.4</td>
+        <td align="right">-0.43</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1948-04-01</td>
+        <td align="right">23.8</td>
+        <td align="right">1.71</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1948-05-01</td>
+        <td align="right">23.9</td>
+        <td align="right">0.42</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1948-06-01</td>
+        <td align="right">24.1</td>
+        <td align="right">0.84</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1948-07-01</td>
+        <td align="right">24.4</td>
+        <td align="right">1.24</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1948-08-01</td>
+        <td align="right">24.5</td>
+        <td align="right">0.41</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1948-09-01</td>
+        <td align="right">24.5</td>
+        <td align="right">0.0</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1948-10-01</td>
+        <td align="right">24.4</td>
+        <td align="right">-0.41</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1948-11-01</td>
+        <td align="right">24.2</td>
+        <td align="right">-0.82</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1948-12-01</td>
+        <td align="right">24.1</td>
+        <td align="right">-0.41</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1949-01-01</td>
+        <td align="right">24.0</td>
+        <td align="right">-0.41</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1949-02-01</td>
+        <td align="right">23.8</td>
+        <td align="right">-0.83</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1949-03-01</td>
+        <td align="right">23.8</td>
+        <td align="right">0.0</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1949-04-01</td>
+        <td align="right">23.9</td>
+        <td align="right">0.42</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1949-05-01</td>
+        <td align="right">23.8</td>
+        <td align="right">-0.42</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1949-06-01</td>
+        <td align="right">23.9</td>
+        <td align="right">0.42</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1949-07-01</td>
+        <td align="right">23.7</td>
+        <td align="right">-0.84</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1949-08-01</td>
+        <td align="right">23.8</td>
+        <td align="right">0.42</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1949-09-01</td>
+        <td align="right">23.9</td>
+        <td align="right">0.42</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1949-10-01</td>
+        <td align="right">23.7</td>
+        <td align="right">-0.84</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1949-11-01</td>
+        <td align="right">23.8</td>
+        <td align="right">0.42</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1949-12-01</td>
+        <td align="right">23.6</td>
+        <td align="right">-0.84</td>
+        <td align="right">0.4</td>
+        </tr>
+        <tr>
+        <td>1950-01-01</td>
+        <td align="right">23.5</td>
+        <td align="right">-0.42</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1950-02-01</td>
+        <td align="right">23.5</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1950-03-01</td>
+        <td align="right">23.6</td>
+        <td align="right">0.43</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1950-04-01</td>
+        <td align="right">23.6</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1950-05-01</td>
+        <td align="right">23.7</td>
+        <td align="right">0.42</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1950-06-01</td>
+        <td align="right">23.8</td>
+        <td align="right">0.42</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1950-07-01</td>
+        <td align="right">24.1</td>
+        <td align="right">1.26</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1950-08-01</td>
+        <td align="right">24.3</td>
+        <td align="right">0.83</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1950-09-01</td>
+        <td align="right">24.4</td>
+        <td align="right">0.41</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1950-10-01</td>
+        <td align="right">24.6</td>
+        <td align="right">0.82</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1950-11-01</td>
+        <td align="right">24.7</td>
+        <td align="right">0.41</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1950-12-01</td>
+        <td align="right">25.0</td>
+        <td align="right">1.21</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1951-01-01</td>
+        <td align="right">25.4</td>
+        <td align="right">1.6</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1951-02-01</td>
+        <td align="right">25.7</td>
+        <td align="right">1.18</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1951-03-01</td>
+        <td align="right">25.8</td>
+        <td align="right">0.39</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1951-04-01</td>
+        <td align="right">25.8</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1951-05-01</td>
+        <td align="right">25.9</td>
+        <td align="right">0.39</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1951-06-01</td>
+        <td align="right">25.9</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1951-07-01</td>
+        <td align="right">25.9</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1951-08-01</td>
+        <td align="right">25.9</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1951-09-01</td>
+        <td align="right">26.1</td>
+        <td align="right">0.77</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1951-10-01</td>
+        <td align="right">26.2</td>
+        <td align="right">0.38</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1951-11-01</td>
+        <td align="right">26.4</td>
+        <td align="right">0.76</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1951-12-01</td>
+        <td align="right">26.5</td>
+        <td align="right">0.38</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1952-01-01</td>
+        <td align="right">26.5</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1952-02-01</td>
+        <td align="right">26.3</td>
+        <td align="right">-0.75</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1952-03-01</td>
+        <td align="right">26.3</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1952-04-01</td>
+        <td align="right">26.4</td>
+        <td align="right">0.38</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1952-05-01</td>
+        <td align="right">26.4</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1952-06-01</td>
+        <td align="right">26.5</td>
+        <td align="right">0.38</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1952-07-01</td>
+        <td align="right">26.7</td>
+        <td align="right">0.75</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1952-08-01</td>
+        <td align="right">26.7</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1952-09-01</td>
+        <td align="right">26.7</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1952-10-01</td>
+        <td align="right">26.7</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1952-11-01</td>
+        <td align="right">26.7</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1952-12-01</td>
+        <td align="right">26.7</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1953-01-01</td>
+        <td align="right">26.6</td>
+        <td align="right">-0.37</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1953-02-01</td>
+        <td align="right">26.5</td>
+        <td align="right">-0.38</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1953-03-01</td>
+        <td align="right">26.6</td>
+        <td align="right">0.38</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1953-04-01</td>
+        <td align="right">26.6</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1953-05-01</td>
+        <td align="right">26.7</td>
+        <td align="right">0.38</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1953-06-01</td>
+        <td align="right">26.8</td>
+        <td align="right">0.37</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1953-07-01</td>
+        <td align="right">26.8</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1953-08-01</td>
+        <td align="right">26.9</td>
+        <td align="right">0.37</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1953-09-01</td>
+        <td align="right">26.9</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1953-10-01</td>
+        <td align="right">27.0</td>
+        <td align="right">0.37</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1953-11-01</td>
+        <td align="right">26.9</td>
+        <td align="right">-0.37</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1953-12-01</td>
+        <td align="right">26.9</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1954-01-01</td>
+        <td align="right">26.9</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1954-02-01</td>
+        <td align="right">26.9</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1954-03-01</td>
+        <td align="right">26.9</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1954-04-01</td>
+        <td align="right">26.8</td>
+        <td align="right">-0.37</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1954-05-01</td>
+        <td align="right">26.9</td>
+        <td align="right">0.37</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1954-06-01</td>
+        <td align="right">26.9</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1954-07-01</td>
+        <td align="right">26.9</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1954-08-01</td>
+        <td align="right">26.9</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1954-09-01</td>
+        <td align="right">26.8</td>
+        <td align="right">-0.37</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1954-10-01</td>
+        <td align="right">26.8</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1954-11-01</td>
+        <td align="right">26.8</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1954-12-01</td>
+        <td align="right">26.7</td>
+        <td align="right">-0.37</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1955-01-01</td>
+        <td align="right">26.7</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1955-02-01</td>
+        <td align="right">26.7</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1955-03-01</td>
+        <td align="right">26.7</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1955-04-01</td>
+        <td align="right">26.7</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1955-05-01</td>
+        <td align="right">26.7</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1955-06-01</td>
+        <td align="right">26.7</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1955-07-01</td>
+        <td align="right">26.8</td>
+        <td align="right">0.37</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1955-08-01</td>
+        <td align="right">26.8</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1955-09-01</td>
+        <td align="right">26.9</td>
+        <td align="right">0.37</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1955-10-01</td>
+        <td align="right">26.9</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1955-11-01</td>
+        <td align="right">26.9</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1955-12-01</td>
+        <td align="right">26.8</td>
+        <td align="right">-0.37</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1956-01-01</td>
+        <td align="right">26.8</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1956-02-01</td>
+        <td align="right">26.8</td>
+        <td align="right">0.0</td>
+        <td align="right">0.75</td>
+        </tr>
+        <tr>
+        <td>1956-03-01</td>
+        <td align="right">26.8</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1956-04-01</td>
+        <td align="right">26.9</td>
+        <td align="right">0.37</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1956-05-01</td>
+        <td align="right">27.0</td>
+        <td align="right">0.37</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1956-06-01</td>
+        <td align="right">27.2</td>
+        <td align="right">0.74</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1956-07-01</td>
+        <td align="right">27.4</td>
+        <td align="right">0.74</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1956-08-01</td>
+        <td align="right">27.3</td>
+        <td align="right">-0.36</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1956-09-01</td>
+        <td align="right">27.4</td>
+        <td align="right">0.37</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1956-10-01</td>
+        <td align="right">27.5</td>
+        <td align="right">0.36</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1956-11-01</td>
+        <td align="right">27.5</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1956-12-01</td>
+        <td align="right">27.6</td>
+        <td align="right">0.36</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1957-01-01</td>
+        <td align="right">27.6</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1957-02-01</td>
+        <td align="right">27.7</td>
+        <td align="right">0.36</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1957-03-01</td>
+        <td align="right">27.8</td>
+        <td align="right">0.36</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1957-04-01</td>
+        <td align="right">27.9</td>
+        <td align="right">0.36</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1957-05-01</td>
+        <td align="right">28.0</td>
+        <td align="right">0.36</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1957-06-01</td>
+        <td align="right">28.1</td>
+        <td align="right">0.36</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1957-07-01</td>
+        <td align="right">28.3</td>
+        <td align="right">0.71</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1957-08-01</td>
+        <td align="right">28.3</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1957-09-01</td>
+        <td align="right">28.3</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1957-10-01</td>
+        <td align="right">28.3</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1957-11-01</td>
+        <td align="right">28.4</td>
+        <td align="right">0.35</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1957-12-01</td>
+        <td align="right">28.4</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1958-01-01</td>
+        <td align="right">28.6</td>
+        <td align="right">0.7</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1958-02-01</td>
+        <td align="right">28.6</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1958-03-01</td>
+        <td align="right">28.8</td>
+        <td align="right">0.7</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1958-04-01</td>
+        <td align="right">28.9</td>
+        <td align="right">0.35</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1958-05-01</td>
+        <td align="right">28.9</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1958-06-01</td>
+        <td align="right">28.9</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1958-07-01</td>
+        <td align="right">29.0</td>
+        <td align="right">0.35</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1958-08-01</td>
+        <td align="right">28.9</td>
+        <td align="right">-0.34</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1958-09-01</td>
+        <td align="right">28.9</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1958-10-01</td>
+        <td align="right">28.9</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1958-11-01</td>
+        <td align="right">29.0</td>
+        <td align="right">0.35</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1958-12-01</td>
+        <td align="right">28.9</td>
+        <td align="right">-0.34</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1959-01-01</td>
+        <td align="right">29.0</td>
+        <td align="right">0.35</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1959-02-01</td>
+        <td align="right">28.9</td>
+        <td align="right">-0.34</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1959-03-01</td>
+        <td align="right">28.9</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1959-04-01</td>
+        <td align="right">29.0</td>
+        <td align="right">0.35</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1959-05-01</td>
+        <td align="right">29.0</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1959-06-01</td>
+        <td align="right">29.1</td>
+        <td align="right">0.34</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1959-07-01</td>
+        <td align="right">29.2</td>
+        <td align="right">0.34</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1959-08-01</td>
+        <td align="right">29.2</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1959-09-01</td>
+        <td align="right">29.3</td>
+        <td align="right">0.34</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1959-10-01</td>
+        <td align="right">29.4</td>
+        <td align="right">0.34</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1959-11-01</td>
+        <td align="right">29.4</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1959-12-01</td>
+        <td align="right">29.4</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1960-01-01</td>
+        <td align="right">29.3</td>
+        <td align="right">-0.34</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1960-02-01</td>
+        <td align="right">29.4</td>
+        <td align="right">0.34</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1960-03-01</td>
+        <td align="right">29.4</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1960-04-01</td>
+        <td align="right">29.5</td>
+        <td align="right">0.34</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1960-05-01</td>
+        <td align="right">29.5</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1960-06-01</td>
+        <td align="right">29.6</td>
+        <td align="right">0.34</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1960-07-01</td>
+        <td align="right">29.6</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1960-08-01</td>
+        <td align="right">29.6</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1960-09-01</td>
+        <td align="right">29.6</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1960-10-01</td>
+        <td align="right">29.8</td>
+        <td align="right">0.68</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1960-11-01</td>
+        <td align="right">29.8</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1960-12-01</td>
+        <td align="right">29.8</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1961-01-01</td>
+        <td align="right">29.8</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1961-02-01</td>
+        <td align="right">29.8</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1961-03-01</td>
+        <td align="right">29.8</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1961-04-01</td>
+        <td align="right">29.8</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1961-05-01</td>
+        <td align="right">29.8</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1961-06-01</td>
+        <td align="right">29.8</td>
+        <td align="right">0.0</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1961-07-01</td>
+        <td align="right">30.0</td>
+        <td align="right">0.67</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1961-08-01</td>
+        <td align="right">29.9</td>
+        <td align="right">-0.33</td>
+        <td align="right">1.0</td>
+        </tr>
+        <tr>
+        <td>1961-09-01</td>
+        <td align="right">30.0</td>
+        <td align="right">0.33</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1961-10-01</td>
+        <td align="right">30.0</td>
+        <td align="right">0.0</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1961-11-01</td>
+        <td align="right">30.0</td>
+        <td align="right">0.0</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1961-12-01</td>
+        <td align="right">30.0</td>
+        <td align="right">0.0</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1962-01-01</td>
+        <td align="right">30.0</td>
+        <td align="right">0.0</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1962-02-01</td>
+        <td align="right">30.1</td>
+        <td align="right">0.33</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1962-03-01</td>
+        <td align="right">30.1</td>
+        <td align="right">0.0</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1962-04-01</td>
+        <td align="right">30.2</td>
+        <td align="right">0.33</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1962-05-01</td>
+        <td align="right">30.2</td>
+        <td align="right">0.0</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1962-06-01</td>
+        <td align="right">30.2</td>
+        <td align="right">0.0</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1962-07-01</td>
+        <td align="right">30.3</td>
+        <td align="right">0.33</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1962-08-01</td>
+        <td align="right">30.3</td>
+        <td align="right">0.0</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1962-09-01</td>
+        <td align="right">30.4</td>
+        <td align="right">0.33</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1962-10-01</td>
+        <td align="right">30.4</td>
+        <td align="right">0.0</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1962-11-01</td>
+        <td align="right">30.4</td>
+        <td align="right">0.0</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1962-12-01</td>
+        <td align="right">30.4</td>
+        <td align="right">0.0</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1963-01-01</td>
+        <td align="right">30.4</td>
+        <td align="right">0.0</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1963-02-01</td>
+        <td align="right">30.4</td>
+        <td align="right">0.0</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1963-03-01</td>
+        <td align="right">30.5</td>
+        <td align="right">0.33</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1963-04-01</td>
+        <td align="right">30.5</td>
+        <td align="right">0.0</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1963-05-01</td>
+        <td align="right">30.5</td>
+        <td align="right">0.0</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1963-06-01</td>
+        <td align="right">30.6</td>
+        <td align="right">0.33</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1963-07-01</td>
+        <td align="right">30.7</td>
+        <td align="right">0.33</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1963-08-01</td>
+        <td align="right">30.7</td>
+        <td align="right">0.0</td>
+        <td align="right">1.15</td>
+        </tr>
+        <tr>
+        <td>1963-09-01</td>
+        <td align="right">30.7</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1963-10-01</td>
+        <td align="right">30.8</td>
+        <td align="right">0.33</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1963-11-01</td>
+        <td align="right">30.8</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1963-12-01</td>
+        <td align="right">30.9</td>
+        <td align="right">0.32</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1964-01-01</td>
+        <td align="right">30.9</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1964-02-01</td>
+        <td align="right">30.9</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1964-03-01</td>
+        <td align="right">30.9</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1964-04-01</td>
+        <td align="right">30.9</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1964-05-01</td>
+        <td align="right">30.9</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1964-06-01</td>
+        <td align="right">31.0</td>
+        <td align="right">0.32</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1964-07-01</td>
+        <td align="right">31.1</td>
+        <td align="right">0.32</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1964-08-01</td>
+        <td align="right">31.0</td>
+        <td align="right">-0.32</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1964-09-01</td>
+        <td align="right">31.1</td>
+        <td align="right">0.32</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1964-10-01</td>
+        <td align="right">31.1</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1964-11-01</td>
+        <td align="right">31.2</td>
+        <td align="right">0.32</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1964-12-01</td>
+        <td align="right">31.2</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1965-01-01</td>
+        <td align="right">31.2</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1965-02-01</td>
+        <td align="right">31.2</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1965-03-01</td>
+        <td align="right">31.3</td>
+        <td align="right">0.32</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1965-04-01</td>
+        <td align="right">31.4</td>
+        <td align="right">0.32</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1965-05-01</td>
+        <td align="right">31.4</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1965-06-01</td>
+        <td align="right">31.6</td>
+        <td align="right">0.64</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1965-07-01</td>
+        <td align="right">31.6</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1965-08-01</td>
+        <td align="right">31.6</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1965-09-01</td>
+        <td align="right">31.6</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1965-10-01</td>
+        <td align="right">31.7</td>
+        <td align="right">0.32</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1965-11-01</td>
+        <td align="right">31.7</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1965-12-01</td>
+        <td align="right">31.8</td>
+        <td align="right">0.32</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1966-01-01</td>
+        <td align="right">31.8</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1966-02-01</td>
+        <td align="right">32.0</td>
+        <td align="right">0.63</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1966-03-01</td>
+        <td align="right">32.1</td>
+        <td align="right">0.31</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1966-04-01</td>
+        <td align="right">32.3</td>
+        <td align="right">0.62</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1966-05-01</td>
+        <td align="right">32.3</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1966-06-01</td>
+        <td align="right">32.4</td>
+        <td align="right">0.31</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1966-07-01</td>
+        <td align="right">32.5</td>
+        <td align="right">0.31</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1966-08-01</td>
+        <td align="right">32.7</td>
+        <td align="right">0.62</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1966-09-01</td>
+        <td align="right">32.7</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1966-10-01</td>
+        <td align="right">32.9</td>
+        <td align="right">0.61</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1966-11-01</td>
+        <td align="right">32.9</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1966-12-01</td>
+        <td align="right">32.9</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1967-01-01</td>
+        <td align="right">32.9</td>
+        <td align="right">0.0</td>
+        <td align="right">1.25</td>
+        </tr>
+        <tr>
+        <td>1967-02-01</td>
+        <td align="right">32.9</td>
+        <td align="right">0.0</td>
+        <td align="right">1.4</td>
+        </tr>
+        <tr>
+        <td>1967-03-01</td>
+        <td align="right">33.0</td>
+        <td align="right">0.3</td>
+        <td align="right">1.4</td>
+        </tr>
+        <tr>
+        <td>1967-04-01</td>
+        <td align="right">33.1</td>
+        <td align="right">0.3</td>
+        <td align="right">1.4</td>
+        </tr>
+        <tr>
+        <td>1967-05-01</td>
+        <td align="right">33.2</td>
+        <td align="right">0.3</td>
+        <td align="right">1.4</td>
+        </tr>
+        <tr>
+        <td>1967-06-01</td>
+        <td align="right">33.3</td>
+        <td align="right">0.3</td>
+        <td align="right">1.4</td>
+        </tr>
+        <tr>
+        <td>1967-07-01</td>
+        <td align="right">33.4</td>
+        <td align="right">0.3</td>
+        <td align="right">1.4</td>
+        </tr>
+        <tr>
+        <td>1967-08-01</td>
+        <td align="right">33.5</td>
+        <td align="right">0.3</td>
+        <td align="right">1.4</td>
+        </tr>
+        <tr>
+        <td>1967-09-01</td>
+        <td align="right">33.6</td>
+        <td align="right">0.3</td>
+        <td align="right">1.4</td>
+        </tr>
+        <tr>
+        <td>1967-10-01</td>
+        <td align="right">33.7</td>
+        <td align="right">0.3</td>
+        <td align="right">1.4</td>
+        </tr>
+        <tr>
+        <td>1967-11-01</td>
+        <td align="right">33.8</td>
+        <td align="right">0.3</td>
+        <td align="right">1.4</td>
+        </tr>
+        <tr>
+        <td>1967-12-01</td>
+        <td align="right">33.9</td>
+        <td align="right">0.3</td>
+        <td align="right">1.4</td>
+        </tr>
+        <tr>
+        <td>1968-01-01</td>
+        <td align="right">34.1</td>
+        <td align="right">0.59</td>
+        <td align="right">1.4</td>
+        </tr>
+        <tr>
+        <td>1968-02-01</td>
+        <td align="right">34.2</td>
+        <td align="right">0.29</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1968-03-01</td>
+        <td align="right">34.3</td>
+        <td align="right">0.29</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1968-04-01</td>
+        <td align="right">34.4</td>
+        <td align="right">0.29</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1968-05-01</td>
+        <td align="right">34.5</td>
+        <td align="right">0.29</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1968-06-01</td>
+        <td align="right">34.7</td>
+        <td align="right">0.58</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1968-07-01</td>
+        <td align="right">34.9</td>
+        <td align="right">0.58</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1968-08-01</td>
+        <td align="right">35.0</td>
+        <td align="right">0.29</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1968-09-01</td>
+        <td align="right">35.1</td>
+        <td align="right">0.29</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1968-10-01</td>
+        <td align="right">35.3</td>
+        <td align="right">0.57</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1968-11-01</td>
+        <td align="right">35.4</td>
+        <td align="right">0.28</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1968-12-01</td>
+        <td align="right">35.5</td>
+        <td align="right">0.28</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1969-01-01</td>
+        <td align="right">35.6</td>
+        <td align="right">0.28</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1969-02-01</td>
+        <td align="right">35.8</td>
+        <td align="right">0.56</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1969-03-01</td>
+        <td align="right">36.1</td>
+        <td align="right">0.84</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1969-04-01</td>
+        <td align="right">36.3</td>
+        <td align="right">0.55</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1969-05-01</td>
+        <td align="right">36.4</td>
+        <td align="right">0.28</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1969-06-01</td>
+        <td align="right">36.6</td>
+        <td align="right">0.55</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1969-07-01</td>
+        <td align="right">36.8</td>
+        <td align="right">0.55</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1969-08-01</td>
+        <td align="right">37.0</td>
+        <td align="right">0.54</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1969-09-01</td>
+        <td align="right">37.1</td>
+        <td align="right">0.27</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1969-10-01</td>
+        <td align="right">37.3</td>
+        <td align="right">0.54</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1969-11-01</td>
+        <td align="right">37.5</td>
+        <td align="right">0.54</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1969-12-01</td>
+        <td align="right">37.7</td>
+        <td align="right">0.53</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1970-01-01</td>
+        <td align="right">37.8</td>
+        <td align="right">0.27</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1970-02-01</td>
+        <td align="right">38.0</td>
+        <td align="right">0.53</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1970-03-01</td>
+        <td align="right">38.2</td>
+        <td align="right">0.53</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1970-04-01</td>
+        <td align="right">38.5</td>
+        <td align="right">0.79</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1970-05-01</td>
+        <td align="right">38.6</td>
+        <td align="right">0.26</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1970-06-01</td>
+        <td align="right">38.8</td>
+        <td align="right">0.52</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1970-07-01</td>
+        <td align="right">39.0</td>
+        <td align="right">0.52</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1970-08-01</td>
+        <td align="right">39.0</td>
+        <td align="right">0.0</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1970-09-01</td>
+        <td align="right">39.2</td>
+        <td align="right">0.51</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1970-10-01</td>
+        <td align="right">39.4</td>
+        <td align="right">0.51</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1970-11-01</td>
+        <td align="right">39.6</td>
+        <td align="right">0.51</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1970-12-01</td>
+        <td align="right">39.8</td>
+        <td align="right">0.51</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1971-01-01</td>
+        <td align="right">39.8</td>
+        <td align="right">0.0</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1971-02-01</td>
+        <td align="right">39.9</td>
+        <td align="right">0.25</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1971-03-01</td>
+        <td align="right">40.0</td>
+        <td align="right">0.25</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1971-04-01</td>
+        <td align="right">40.1</td>
+        <td align="right">0.25</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1971-05-01</td>
+        <td align="right">40.3</td>
+        <td align="right">0.5</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1971-06-01</td>
+        <td align="right">40.6</td>
+        <td align="right">0.74</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1971-07-01</td>
+        <td align="right">40.7</td>
+        <td align="right">0.25</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1971-08-01</td>
+        <td align="right">40.8</td>
+        <td align="right">0.25</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1971-09-01</td>
+        <td align="right">40.8</td>
+        <td align="right">0.0</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1971-10-01</td>
+        <td align="right">40.9</td>
+        <td align="right">0.25</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1971-11-01</td>
+        <td align="right">40.9</td>
+        <td align="right">0.0</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1971-12-01</td>
+        <td align="right">41.1</td>
+        <td align="right">0.49</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1972-01-01</td>
+        <td align="right">41.1</td>
+        <td align="right">0.0</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1972-02-01</td>
+        <td align="right">41.3</td>
+        <td align="right">0.49</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1972-03-01</td>
+        <td align="right">41.4</td>
+        <td align="right">0.24</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1972-04-01</td>
+        <td align="right">41.5</td>
+        <td align="right">0.24</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1972-05-01</td>
+        <td align="right">41.6</td>
+        <td align="right">0.24</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1972-06-01</td>
+        <td align="right">41.7</td>
+        <td align="right">0.24</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1972-07-01</td>
+        <td align="right">41.9</td>
+        <td align="right">0.48</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1972-08-01</td>
+        <td align="right">42.0</td>
+        <td align="right">0.24</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1972-09-01</td>
+        <td align="right">42.1</td>
+        <td align="right">0.24</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1972-10-01</td>
+        <td align="right">42.3</td>
+        <td align="right">0.48</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1972-11-01</td>
+        <td align="right">42.4</td>
+        <td align="right">0.24</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1972-12-01</td>
+        <td align="right">42.5</td>
+        <td align="right">0.24</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1973-01-01</td>
+        <td align="right">42.6</td>
+        <td align="right">0.24</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1973-02-01</td>
+        <td align="right">42.9</td>
+        <td align="right">0.7</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1973-03-01</td>
+        <td align="right">43.3</td>
+        <td align="right">0.93</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1973-04-01</td>
+        <td align="right">43.6</td>
+        <td align="right">0.69</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1973-05-01</td>
+        <td align="right">43.9</td>
+        <td align="right">0.69</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1973-06-01</td>
+        <td align="right">44.2</td>
+        <td align="right">0.68</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1973-07-01</td>
+        <td align="right">44.3</td>
+        <td align="right">0.23</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1973-08-01</td>
+        <td align="right">45.1</td>
+        <td align="right">1.81</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1973-09-01</td>
+        <td align="right">45.2</td>
+        <td align="right">0.22</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1973-10-01</td>
+        <td align="right">45.6</td>
+        <td align="right">0.88</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1973-11-01</td>
+        <td align="right">45.9</td>
+        <td align="right">0.66</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1973-12-01</td>
+        <td align="right">46.2</td>
+        <td align="right">0.65</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1974-01-01</td>
+        <td align="right">46.6</td>
+        <td align="right">0.87</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1974-02-01</td>
+        <td align="right">47.2</td>
+        <td align="right">1.29</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1974-03-01</td>
+        <td align="right">47.8</td>
+        <td align="right">1.27</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1974-04-01</td>
+        <td align="right">48.0</td>
+        <td align="right">0.42</td>
+        <td align="right">1.6</td>
+        </tr>
+        <tr>
+        <td>1974-05-01</td>
+        <td align="right">48.6</td>
+        <td align="right">1.25</td>
+        <td align="right">2.0</td>
+        </tr>
+        <tr>
+        <td>1974-06-01</td>
+        <td align="right">49.0</td>
+        <td align="right">0.82</td>
+        <td align="right">2.0</td>
+        </tr>
+        <tr>
+        <td>1974-07-01</td>
+        <td align="right">49.4</td>
+        <td align="right">0.82</td>
+        <td align="right">2.0</td>
+        </tr>
+        <tr>
+        <td>1974-08-01</td>
+        <td align="right">50.0</td>
+        <td align="right">1.21</td>
+        <td align="right">2.0</td>
+        </tr>
+        <tr>
+        <td>1974-09-01</td>
+        <td align="right">50.6</td>
+        <td align="right">1.2</td>
+        <td align="right">2.0</td>
+        </tr>
+        <tr>
+        <td>1974-10-01</td>
+        <td align="right">51.1</td>
+        <td align="right">0.99</td>
+        <td align="right">2.0</td>
+        </tr>
+        <tr>
+        <td>1974-11-01</td>
+        <td align="right">51.5</td>
+        <td align="right">0.78</td>
+        <td align="right">2.0</td>
+        </tr>
+        <tr>
+        <td>1974-12-01</td>
+        <td align="right">51.9</td>
+        <td align="right">0.78</td>
+        <td align="right">2.0</td>
+        </tr>
+        <tr>
+        <td>1975-01-01</td>
+        <td align="right">52.1</td>
+        <td align="right">0.39</td>
+        <td align="right">2.1</td>
+        </tr>
+        <tr>
+        <td>1975-02-01</td>
+        <td align="right">52.5</td>
+        <td align="right">0.77</td>
+        <td align="right">2.1</td>
+        </tr>
+        <tr>
+        <td>1975-03-01</td>
+        <td align="right">52.7</td>
+        <td align="right">0.38</td>
+        <td align="right">2.1</td>
+        </tr>
+        <tr>
+        <td>1975-04-01</td>
+        <td align="right">52.9</td>
+        <td align="right">0.38</td>
+        <td align="right">2.1</td>
+        </tr>
+        <tr>
+        <td>1975-05-01</td>
+        <td align="right">53.2</td>
+        <td align="right">0.57</td>
+        <td align="right">2.1</td>
+        </tr>
+        <tr>
+        <td>1975-06-01</td>
+        <td align="right">53.6</td>
+        <td align="right">0.75</td>
+        <td align="right">2.1</td>
+        </tr>
+        <tr>
+        <td>1975-07-01</td>
+        <td align="right">54.2</td>
+        <td align="right">1.12</td>
+        <td align="right">2.1</td>
+        </tr>
+        <tr>
+        <td>1975-08-01</td>
+        <td align="right">54.3</td>
+        <td align="right">0.18</td>
+        <td align="right">2.1</td>
+        </tr>
+        <tr>
+        <td>1975-09-01</td>
+        <td align="right">54.6</td>
+        <td align="right">0.55</td>
+        <td align="right">2.1</td>
+        </tr>
+        <tr>
+        <td>1975-10-01</td>
+        <td align="right">54.9</td>
+        <td align="right">0.55</td>
+        <td align="right">2.1</td>
+        </tr>
+        <tr>
+        <td>1975-11-01</td>
+        <td align="right">55.3</td>
+        <td align="right">0.73</td>
+        <td align="right">2.1</td>
+        </tr>
+        <tr>
+        <td>1975-12-01</td>
+        <td align="right">55.5</td>
+        <td align="right">0.36</td>
+        <td align="right">2.1</td>
+        </tr>
+        <tr>
+        <td>1976-01-01</td>
+        <td align="right">55.6</td>
+        <td align="right">0.18</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1976-02-01</td>
+        <td align="right">55.8</td>
+        <td align="right">0.36</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1976-03-01</td>
+        <td align="right">55.9</td>
+        <td align="right">0.18</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1976-04-01</td>
+        <td align="right">56.1</td>
+        <td align="right">0.36</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1976-05-01</td>
+        <td align="right">56.5</td>
+        <td align="right">0.71</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1976-06-01</td>
+        <td align="right">56.8</td>
+        <td align="right">0.53</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1976-07-01</td>
+        <td align="right">57.1</td>
+        <td align="right">0.53</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1976-08-01</td>
+        <td align="right">57.4</td>
+        <td align="right">0.53</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1976-09-01</td>
+        <td align="right">57.6</td>
+        <td align="right">0.35</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1976-10-01</td>
+        <td align="right">57.9</td>
+        <td align="right">0.52</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1976-11-01</td>
+        <td align="right">58.0</td>
+        <td align="right">0.17</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1976-12-01</td>
+        <td align="right">58.2</td>
+        <td align="right">0.34</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1977-01-01</td>
+        <td align="right">58.5</td>
+        <td align="right">0.52</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1977-02-01</td>
+        <td align="right">59.1</td>
+        <td align="right">1.03</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1977-03-01</td>
+        <td align="right">59.5</td>
+        <td align="right">0.68</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1977-04-01</td>
+        <td align="right">60.0</td>
+        <td align="right">0.84</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1977-05-01</td>
+        <td align="right">60.3</td>
+        <td align="right">0.5</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1977-06-01</td>
+        <td align="right">60.7</td>
+        <td align="right">0.66</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1977-07-01</td>
+        <td align="right">61.0</td>
+        <td align="right">0.49</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1977-08-01</td>
+        <td align="right">61.2</td>
+        <td align="right">0.33</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1977-09-01</td>
+        <td align="right">61.4</td>
+        <td align="right">0.33</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1977-10-01</td>
+        <td align="right">61.6</td>
+        <td align="right">0.33</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1977-11-01</td>
+        <td align="right">61.9</td>
+        <td align="right">0.49</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1977-12-01</td>
+        <td align="right">62.1</td>
+        <td align="right">0.32</td>
+        <td align="right">2.3</td>
+        </tr>
+        <tr>
+        <td>1978-01-01</td>
+        <td align="right">62.5</td>
+        <td align="right">0.64</td>
+        <td align="right">2.65</td>
+        </tr>
+        <tr>
+        <td>1978-02-01</td>
+        <td align="right">62.9</td>
+        <td align="right">0.64</td>
+        <td align="right">2.65</td>
+        </tr>
+        <tr>
+        <td>1978-03-01</td>
+        <td align="right">63.4</td>
+        <td align="right">0.79</td>
+        <td align="right">2.65</td>
+        </tr>
+        <tr>
+        <td>1978-04-01</td>
+        <td align="right">63.9</td>
+        <td align="right">0.79</td>
+        <td align="right">2.65</td>
+        </tr>
+        <tr>
+        <td>1978-05-01</td>
+        <td align="right">64.5</td>
+        <td align="right">0.94</td>
+        <td align="right">2.65</td>
+        </tr>
+        <tr>
+        <td>1978-06-01</td>
+        <td align="right">65.2</td>
+        <td align="right">1.09</td>
+        <td align="right">2.65</td>
+        </tr>
+        <tr>
+        <td>1978-07-01</td>
+        <td align="right">65.7</td>
+        <td align="right">0.77</td>
+        <td align="right">2.65</td>
+        </tr>
+        <tr>
+        <td>1978-08-01</td>
+        <td align="right">66.0</td>
+        <td align="right">0.46</td>
+        <td align="right">2.65</td>
+        </tr>
+        <tr>
+        <td>1978-09-01</td>
+        <td align="right">66.5</td>
+        <td align="right">0.76</td>
+        <td align="right">2.65</td>
+        </tr>
+        <tr>
+        <td>1978-10-01</td>
+        <td align="right">67.1</td>
+        <td align="right">0.9</td>
+        <td align="right">2.65</td>
+        </tr>
+        <tr>
+        <td>1978-11-01</td>
+        <td align="right">67.4</td>
+        <td align="right">0.45</td>
+        <td align="right">2.65</td>
+        </tr>
+        <tr>
+        <td>1978-12-01</td>
+        <td align="right">67.7</td>
+        <td align="right">0.45</td>
+        <td align="right">2.65</td>
+        </tr>
+        <tr>
+        <td>1979-01-01</td>
+        <td align="right">68.3</td>
+        <td align="right">0.89</td>
+        <td align="right">2.9</td>
+        </tr>
+        <tr>
+        <td>1979-02-01</td>
+        <td align="right">69.1</td>
+        <td align="right">1.17</td>
+        <td align="right">2.9</td>
+        </tr>
+        <tr>
+        <td>1979-03-01</td>
+        <td align="right">69.8</td>
+        <td align="right">1.01</td>
+        <td align="right">2.9</td>
+        </tr>
+        <tr>
+        <td>1979-04-01</td>
+        <td align="right">70.6</td>
+        <td align="right">1.15</td>
+        <td align="right">2.9</td>
+        </tr>
+        <tr>
+        <td>1979-05-01</td>
+        <td align="right">71.5</td>
+        <td align="right">1.27</td>
+        <td align="right">2.9</td>
+        </tr>
+        <tr>
+        <td>1979-06-01</td>
+        <td align="right">72.3</td>
+        <td align="right">1.12</td>
+        <td align="right">2.9</td>
+        </tr>
+        <tr>
+        <td>1979-07-01</td>
+        <td align="right">73.1</td>
+        <td align="right">1.11</td>
+        <td align="right">2.9</td>
+        </tr>
+        <tr>
+        <td>1979-08-01</td>
+        <td align="right">73.8</td>
+        <td align="right">0.96</td>
+        <td align="right">2.9</td>
+        </tr>
+        <tr>
+        <td>1979-09-01</td>
+        <td align="right">74.6</td>
+        <td align="right">1.08</td>
+        <td align="right">2.9</td>
+        </tr>
+        <tr>
+        <td>1979-10-01</td>
+        <td align="right">75.2</td>
+        <td align="right">0.8</td>
+        <td align="right">2.9</td>
+        </tr>
+        <tr>
+        <td>1979-11-01</td>
+        <td align="right">75.9</td>
+        <td align="right">0.93</td>
+        <td align="right">2.9</td>
+        </tr>
+        <tr>
+        <td>1979-12-01</td>
+        <td align="right">76.7</td>
+        <td align="right">1.05</td>
+        <td align="right">2.9</td>
+        </tr>
+        <tr>
+        <td>1980-01-01</td>
+        <td align="right">77.8</td>
+        <td align="right">1.43</td>
+        <td align="right">3.1</td>
+        </tr>
+        <tr>
+        <td>1980-02-01</td>
+        <td align="right">78.9</td>
+        <td align="right">1.41</td>
+        <td align="right">3.1</td>
+        </tr>
+        <tr>
+        <td>1980-03-01</td>
+        <td align="right">80.1</td>
+        <td align="right">1.52</td>
+        <td align="right">3.1</td>
+        </tr>
+        <tr>
+        <td>1980-04-01</td>
+        <td align="right">81.0</td>
+        <td align="right">1.12</td>
+        <td align="right">3.1</td>
+        </tr>
+        <tr>
+        <td>1980-05-01</td>
+        <td align="right">81.8</td>
+        <td align="right">0.99</td>
+        <td align="right">3.1</td>
+        </tr>
+        <tr>
+        <td>1980-06-01</td>
+        <td align="right">82.7</td>
+        <td align="right">1.1</td>
+        <td align="right">3.1</td>
+        </tr>
+        <tr>
+        <td>1980-07-01</td>
+        <td align="right">82.7</td>
+        <td align="right">0.0</td>
+        <td align="right">3.1</td>
+        </tr>
+        <tr>
+        <td>1980-08-01</td>
+        <td align="right">83.3</td>
+        <td align="right">0.73</td>
+        <td align="right">3.1</td>
+        </tr>
+        <tr>
+        <td>1980-09-01</td>
+        <td align="right">84.0</td>
+        <td align="right">0.84</td>
+        <td align="right">3.1</td>
+        </tr>
+        <tr>
+        <td>1980-10-01</td>
+        <td align="right">84.8</td>
+        <td align="right">0.95</td>
+        <td align="right">3.1</td>
+        </tr>
+        <tr>
+        <td>1980-11-01</td>
+        <td align="right">85.5</td>
+        <td align="right">0.83</td>
+        <td align="right">3.1</td>
+        </tr>
+        <tr>
+        <td>1980-12-01</td>
+        <td align="right">86.3</td>
+        <td align="right">0.94</td>
+        <td align="right">3.1</td>
+        </tr>
+        <tr>
+        <td>1981-01-01</td>
+        <td align="right">87.0</td>
+        <td align="right">0.81</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1981-02-01</td>
+        <td align="right">87.9</td>
+        <td align="right">1.03</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1981-03-01</td>
+        <td align="right">88.5</td>
+        <td align="right">0.68</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1981-04-01</td>
+        <td align="right">89.1</td>
+        <td align="right">0.68</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1981-05-01</td>
+        <td align="right">89.8</td>
+        <td align="right">0.79</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1981-06-01</td>
+        <td align="right">90.6</td>
+        <td align="right">0.89</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1981-07-01</td>
+        <td align="right">91.6</td>
+        <td align="right">1.1</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1981-08-01</td>
+        <td align="right">92.3</td>
+        <td align="right">0.76</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1981-09-01</td>
+        <td align="right">93.2</td>
+        <td align="right">0.98</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1981-10-01</td>
+        <td align="right">93.4</td>
+        <td align="right">0.21</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1981-11-01</td>
+        <td align="right">93.7</td>
+        <td align="right">0.32</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1981-12-01</td>
+        <td align="right">94.0</td>
+        <td align="right">0.32</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1982-01-01</td>
+        <td align="right">94.3</td>
+        <td align="right">0.32</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1982-02-01</td>
+        <td align="right">94.6</td>
+        <td align="right">0.32</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1982-03-01</td>
+        <td align="right">94.5</td>
+        <td align="right">-0.11</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1982-04-01</td>
+        <td align="right">94.9</td>
+        <td align="right">0.42</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1982-05-01</td>
+        <td align="right">95.8</td>
+        <td align="right">0.95</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1982-06-01</td>
+        <td align="right">97.0</td>
+        <td align="right">1.25</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1982-07-01</td>
+        <td align="right">97.5</td>
+        <td align="right">0.52</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1982-08-01</td>
+        <td align="right">97.7</td>
+        <td align="right">0.21</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1982-09-01</td>
+        <td align="right">97.9</td>
+        <td align="right">0.2</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1982-10-01</td>
+        <td align="right">98.2</td>
+        <td align="right">0.31</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1982-11-01</td>
+        <td align="right">98.0</td>
+        <td align="right">-0.2</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1982-12-01</td>
+        <td align="right">97.6</td>
+        <td align="right">-0.41</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1983-01-01</td>
+        <td align="right">97.8</td>
+        <td align="right">0.2</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1983-02-01</td>
+        <td align="right">97.9</td>
+        <td align="right">0.1</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1983-03-01</td>
+        <td align="right">97.9</td>
+        <td align="right">0.0</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1983-04-01</td>
+        <td align="right">98.6</td>
+        <td align="right">0.72</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1983-05-01</td>
+        <td align="right">99.2</td>
+        <td align="right">0.61</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1983-06-01</td>
+        <td align="right">99.5</td>
+        <td align="right">0.3</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1983-07-01</td>
+        <td align="right">99.9</td>
+        <td align="right">0.4</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1983-08-01</td>
+        <td align="right">100.2</td>
+        <td align="right">0.3</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1983-09-01</td>
+        <td align="right">100.7</td>
+        <td align="right">0.5</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1983-10-01</td>
+        <td align="right">101.0</td>
+        <td align="right">0.3</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1983-11-01</td>
+        <td align="right">101.2</td>
+        <td align="right">0.2</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1983-12-01</td>
+        <td align="right">101.3</td>
+        <td align="right">0.1</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1984-01-01</td>
+        <td align="right">101.9</td>
+        <td align="right">0.59</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1984-02-01</td>
+        <td align="right">102.4</td>
+        <td align="right">0.49</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1984-03-01</td>
+        <td align="right">102.6</td>
+        <td align="right">0.2</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1984-04-01</td>
+        <td align="right">103.1</td>
+        <td align="right">0.49</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1984-05-01</td>
+        <td align="right">103.4</td>
+        <td align="right">0.29</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1984-06-01</td>
+        <td align="right">103.7</td>
+        <td align="right">0.29</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1984-07-01</td>
+        <td align="right">104.1</td>
+        <td align="right">0.39</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1984-08-01</td>
+        <td align="right">104.5</td>
+        <td align="right">0.38</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1984-09-01</td>
+        <td align="right">105.0</td>
+        <td align="right">0.48</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1984-10-01</td>
+        <td align="right">105.3</td>
+        <td align="right">0.29</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1984-11-01</td>
+        <td align="right">105.3</td>
+        <td align="right">0.0</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1984-12-01</td>
+        <td align="right">105.3</td>
+        <td align="right">0.0</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1985-01-01</td>
+        <td align="right">105.5</td>
+        <td align="right">0.19</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1985-02-01</td>
+        <td align="right">106.0</td>
+        <td align="right">0.47</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1985-03-01</td>
+        <td align="right">106.4</td>
+        <td align="right">0.38</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1985-04-01</td>
+        <td align="right">106.9</td>
+        <td align="right">0.47</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1985-05-01</td>
+        <td align="right">107.3</td>
+        <td align="right">0.37</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1985-06-01</td>
+        <td align="right">107.6</td>
+        <td align="right">0.28</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1985-07-01</td>
+        <td align="right">107.8</td>
+        <td align="right">0.19</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1985-08-01</td>
+        <td align="right">108.0</td>
+        <td align="right">0.19</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1985-09-01</td>
+        <td align="right">108.3</td>
+        <td align="right">0.28</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1985-10-01</td>
+        <td align="right">108.7</td>
+        <td align="right">0.37</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1985-11-01</td>
+        <td align="right">109.0</td>
+        <td align="right">0.28</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1985-12-01</td>
+        <td align="right">109.3</td>
+        <td align="right">0.28</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1986-01-01</td>
+        <td align="right">109.6</td>
+        <td align="right">0.27</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1986-02-01</td>
+        <td align="right">109.3</td>
+        <td align="right">-0.27</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1986-03-01</td>
+        <td align="right">108.8</td>
+        <td align="right">-0.46</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1986-04-01</td>
+        <td align="right">108.6</td>
+        <td align="right">-0.18</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1986-05-01</td>
+        <td align="right">108.9</td>
+        <td align="right">0.28</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1986-06-01</td>
+        <td align="right">109.5</td>
+        <td align="right">0.55</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1986-07-01</td>
+        <td align="right">109.5</td>
+        <td align="right">0.0</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1986-08-01</td>
+        <td align="right">109.7</td>
+        <td align="right">0.18</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1986-09-01</td>
+        <td align="right">110.2</td>
+        <td align="right">0.46</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1986-10-01</td>
+        <td align="right">110.3</td>
+        <td align="right">0.09</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1986-11-01</td>
+        <td align="right">110.4</td>
+        <td align="right">0.09</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1986-12-01</td>
+        <td align="right">110.5</td>
+        <td align="right">0.09</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1987-01-01</td>
+        <td align="right">111.2</td>
+        <td align="right">0.63</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1987-02-01</td>
+        <td align="right">111.6</td>
+        <td align="right">0.36</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1987-03-01</td>
+        <td align="right">112.1</td>
+        <td align="right">0.45</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1987-04-01</td>
+        <td align="right">112.7</td>
+        <td align="right">0.54</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1987-05-01</td>
+        <td align="right">113.1</td>
+        <td align="right">0.35</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1987-06-01</td>
+        <td align="right">113.5</td>
+        <td align="right">0.35</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1987-07-01</td>
+        <td align="right">113.8</td>
+        <td align="right">0.26</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1987-08-01</td>
+        <td align="right">114.4</td>
+        <td align="right">0.53</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1987-09-01</td>
+        <td align="right">115.0</td>
+        <td align="right">0.52</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1987-10-01</td>
+        <td align="right">115.3</td>
+        <td align="right">0.26</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1987-11-01</td>
+        <td align="right">115.4</td>
+        <td align="right">0.09</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1987-12-01</td>
+        <td align="right">115.4</td>
+        <td align="right">0.0</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1988-01-01</td>
+        <td align="right">115.7</td>
+        <td align="right">0.26</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1988-02-01</td>
+        <td align="right">116.0</td>
+        <td align="right">0.26</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1988-03-01</td>
+        <td align="right">116.5</td>
+        <td align="right">0.43</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1988-04-01</td>
+        <td align="right">117.1</td>
+        <td align="right">0.52</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1988-05-01</td>
+        <td align="right">117.5</td>
+        <td align="right">0.34</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1988-06-01</td>
+        <td align="right">118.0</td>
+        <td align="right">0.43</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1988-07-01</td>
+        <td align="right">118.5</td>
+        <td align="right">0.42</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1988-08-01</td>
+        <td align="right">119.0</td>
+        <td align="right">0.42</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1988-09-01</td>
+        <td align="right">119.8</td>
+        <td align="right">0.67</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1988-10-01</td>
+        <td align="right">120.2</td>
+        <td align="right">0.33</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1988-11-01</td>
+        <td align="right">120.3</td>
+        <td align="right">0.08</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1988-12-01</td>
+        <td align="right">120.5</td>
+        <td align="right">0.17</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1989-01-01</td>
+        <td align="right">121.1</td>
+        <td align="right">0.5</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1989-02-01</td>
+        <td align="right">121.6</td>
+        <td align="right">0.41</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1989-03-01</td>
+        <td align="right">122.3</td>
+        <td align="right">0.58</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1989-04-01</td>
+        <td align="right">123.1</td>
+        <td align="right">0.65</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1989-05-01</td>
+        <td align="right">123.8</td>
+        <td align="right">0.57</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1989-06-01</td>
+        <td align="right">124.1</td>
+        <td align="right">0.24</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1989-07-01</td>
+        <td align="right">124.4</td>
+        <td align="right">0.24</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1989-08-01</td>
+        <td align="right">124.6</td>
+        <td align="right">0.16</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1989-09-01</td>
+        <td align="right">125.0</td>
+        <td align="right">0.32</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1989-10-01</td>
+        <td align="right">125.6</td>
+        <td align="right">0.48</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1989-11-01</td>
+        <td align="right">125.9</td>
+        <td align="right">0.24</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1989-12-01</td>
+        <td align="right">126.1</td>
+        <td align="right">0.16</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1990-01-01</td>
+        <td align="right">127.4</td>
+        <td align="right">1.03</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1990-02-01</td>
+        <td align="right">128.0</td>
+        <td align="right">0.47</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1990-03-01</td>
+        <td align="right">128.7</td>
+        <td align="right">0.55</td>
+        <td align="right">3.35</td>
+        </tr>
+        <tr>
+        <td>1990-04-01</td>
+        <td align="right">128.9</td>
+        <td align="right">0.16</td>
+        <td align="right">3.8</td>
+        </tr>
+        <tr>
+        <td>1990-05-01</td>
+        <td align="right">129.2</td>
+        <td align="right">0.23</td>
+        <td align="right">3.8</td>
+        </tr>
+        <tr>
+        <td>1990-06-01</td>
+        <td align="right">129.9</td>
+        <td align="right">0.54</td>
+        <td align="right">3.8</td>
+        </tr>
+        <tr>
+        <td>1990-07-01</td>
+        <td align="right">130.4</td>
+        <td align="right">0.38</td>
+        <td align="right">3.8</td>
+        </tr>
+        <tr>
+        <td>1990-08-01</td>
+        <td align="right">131.6</td>
+        <td align="right">0.92</td>
+        <td align="right">3.8</td>
+        </tr>
+        <tr>
+        <td>1990-09-01</td>
+        <td align="right">132.7</td>
+        <td align="right">0.84</td>
+        <td align="right">3.8</td>
+        </tr>
+        <tr>
+        <td>1990-10-01</td>
+        <td align="right">133.5</td>
+        <td align="right">0.6</td>
+        <td align="right">3.8</td>
+        </tr>
+        <tr>
+        <td>1990-11-01</td>
+        <td align="right">133.8</td>
+        <td align="right">0.22</td>
+        <td align="right">3.8</td>
+        </tr>
+        <tr>
+        <td>1990-12-01</td>
+        <td align="right">133.8</td>
+        <td align="right">0.0</td>
+        <td align="right">3.8</td>
+        </tr>
+        <tr>
+        <td>1991-01-01</td>
+        <td align="right">134.6</td>
+        <td align="right">0.6</td>
+        <td align="right">3.8</td>
+        </tr>
+        <tr>
+        <td>1991-02-01</td>
+        <td align="right">134.8</td>
+        <td align="right">0.15</td>
+        <td align="right">3.8</td>
+        </tr>
+        <tr>
+        <td>1991-03-01</td>
+        <td align="right">135.0</td>
+        <td align="right">0.15</td>
+        <td align="right">3.8</td>
+        </tr>
+        <tr>
+        <td>1991-04-01</td>
+        <td align="right">135.2</td>
+        <td align="right">0.15</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1991-05-01</td>
+        <td align="right">135.6</td>
+        <td align="right">0.3</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1991-06-01</td>
+        <td align="right">136.0</td>
+        <td align="right">0.29</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1991-07-01</td>
+        <td align="right">136.2</td>
+        <td align="right">0.15</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1991-08-01</td>
+        <td align="right">136.6</td>
+        <td align="right">0.29</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1991-09-01</td>
+        <td align="right">137.2</td>
+        <td align="right">0.44</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1991-10-01</td>
+        <td align="right">137.4</td>
+        <td align="right">0.15</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1991-11-01</td>
+        <td align="right">137.8</td>
+        <td align="right">0.29</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1991-12-01</td>
+        <td align="right">137.9</td>
+        <td align="right">0.07</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1992-01-01</td>
+        <td align="right">138.1</td>
+        <td align="right">0.15</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1992-02-01</td>
+        <td align="right">138.6</td>
+        <td align="right">0.36</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1992-03-01</td>
+        <td align="right">139.3</td>
+        <td align="right">0.51</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1992-04-01</td>
+        <td align="right">139.5</td>
+        <td align="right">0.14</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1992-05-01</td>
+        <td align="right">139.7</td>
+        <td align="right">0.14</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1992-06-01</td>
+        <td align="right">140.2</td>
+        <td align="right">0.36</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1992-07-01</td>
+        <td align="right">140.5</td>
+        <td align="right">0.21</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1992-08-01</td>
+        <td align="right">140.9</td>
+        <td align="right">0.28</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1992-09-01</td>
+        <td align="right">141.3</td>
+        <td align="right">0.28</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1992-10-01</td>
+        <td align="right">141.8</td>
+        <td align="right">0.35</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1992-11-01</td>
+        <td align="right">142.0</td>
+        <td align="right">0.14</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1992-12-01</td>
+        <td align="right">141.9</td>
+        <td align="right">-0.07</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1993-01-01</td>
+        <td align="right">142.6</td>
+        <td align="right">0.49</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1993-02-01</td>
+        <td align="right">143.1</td>
+        <td align="right">0.35</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1993-03-01</td>
+        <td align="right">143.6</td>
+        <td align="right">0.35</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1993-04-01</td>
+        <td align="right">144.0</td>
+        <td align="right">0.28</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1993-05-01</td>
+        <td align="right">144.2</td>
+        <td align="right">0.14</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1993-06-01</td>
+        <td align="right">144.4</td>
+        <td align="right">0.14</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1993-07-01</td>
+        <td align="right">144.4</td>
+        <td align="right">0.0</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1993-08-01</td>
+        <td align="right">144.8</td>
+        <td align="right">0.28</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1993-09-01</td>
+        <td align="right">145.1</td>
+        <td align="right">0.21</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1993-10-01</td>
+        <td align="right">145.7</td>
+        <td align="right">0.41</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1993-11-01</td>
+        <td align="right">145.8</td>
+        <td align="right">0.07</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1993-12-01</td>
+        <td align="right">145.8</td>
+        <td align="right">0.0</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1994-01-01</td>
+        <td align="right">146.2</td>
+        <td align="right">0.27</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1994-02-01</td>
+        <td align="right">146.7</td>
+        <td align="right">0.34</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1994-03-01</td>
+        <td align="right">147.2</td>
+        <td align="right">0.34</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1994-04-01</td>
+        <td align="right">147.4</td>
+        <td align="right">0.14</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1994-05-01</td>
+        <td align="right">147.5</td>
+        <td align="right">0.07</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1994-06-01</td>
+        <td align="right">148.0</td>
+        <td align="right">0.34</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1994-07-01</td>
+        <td align="right">148.4</td>
+        <td align="right">0.27</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1994-08-01</td>
+        <td align="right">149.0</td>
+        <td align="right">0.4</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1994-09-01</td>
+        <td align="right">149.4</td>
+        <td align="right">0.27</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1994-10-01</td>
+        <td align="right">149.5</td>
+        <td align="right">0.07</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1994-11-01</td>
+        <td align="right">149.7</td>
+        <td align="right">0.13</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1994-12-01</td>
+        <td align="right">149.7</td>
+        <td align="right">0.0</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1995-01-01</td>
+        <td align="right">150.3</td>
+        <td align="right">0.4</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1995-02-01</td>
+        <td align="right">150.9</td>
+        <td align="right">0.4</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1995-03-01</td>
+        <td align="right">151.4</td>
+        <td align="right">0.33</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1995-04-01</td>
+        <td align="right">151.9</td>
+        <td align="right">0.33</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1995-05-01</td>
+        <td align="right">152.2</td>
+        <td align="right">0.2</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1995-06-01</td>
+        <td align="right">152.5</td>
+        <td align="right">0.2</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1995-07-01</td>
+        <td align="right">152.5</td>
+        <td align="right">0.0</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1995-08-01</td>
+        <td align="right">152.9</td>
+        <td align="right">0.26</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1995-09-01</td>
+        <td align="right">153.2</td>
+        <td align="right">0.2</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1995-10-01</td>
+        <td align="right">153.7</td>
+        <td align="right">0.33</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1995-11-01</td>
+        <td align="right">153.6</td>
+        <td align="right">-0.07</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1995-12-01</td>
+        <td align="right">153.5</td>
+        <td align="right">-0.07</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1996-01-01</td>
+        <td align="right">154.4</td>
+        <td align="right">0.59</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1996-02-01</td>
+        <td align="right">154.9</td>
+        <td align="right">0.32</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1996-03-01</td>
+        <td align="right">155.7</td>
+        <td align="right">0.52</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1996-04-01</td>
+        <td align="right">156.3</td>
+        <td align="right">0.39</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1996-05-01</td>
+        <td align="right">156.6</td>
+        <td align="right">0.19</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1996-06-01</td>
+        <td align="right">156.7</td>
+        <td align="right">0.06</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1996-07-01</td>
+        <td align="right">157.0</td>
+        <td align="right">0.19</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1996-08-01</td>
+        <td align="right">157.3</td>
+        <td align="right">0.19</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1996-09-01</td>
+        <td align="right">157.8</td>
+        <td align="right">0.32</td>
+        <td align="right">4.25</td>
+        </tr>
+        <tr>
+        <td>1996-10-01</td>
+        <td align="right">158.3</td>
+        <td align="right">0.32</td>
+        <td align="right">4.75</td>
+        </tr>
+        <tr>
+        <td>1996-11-01</td>
+        <td align="right">158.6</td>
+        <td align="right">0.19</td>
+        <td align="right">4.75</td>
+        </tr>
+        <tr>
+        <td>1996-12-01</td>
+        <td align="right">158.6</td>
+        <td align="right">0.0</td>
+        <td align="right">4.75</td>
+        </tr>
+        <tr>
+        <td>1997-01-01</td>
+        <td align="right">159.1</td>
+        <td align="right">0.32</td>
+        <td align="right">4.75</td>
+        </tr>
+        <tr>
+        <td>1997-02-01</td>
+        <td align="right">159.6</td>
+        <td align="right">0.31</td>
+        <td align="right">4.75</td>
+        </tr>
+        <tr>
+        <td>1997-03-01</td>
+        <td align="right">160.0</td>
+        <td align="right">0.25</td>
+        <td align="right">4.75</td>
+        </tr>
+        <tr>
+        <td>1997-04-01</td>
+        <td align="right">160.2</td>
+        <td align="right">0.12</td>
+        <td align="right">4.75</td>
+        </tr>
+        <tr>
+        <td>1997-05-01</td>
+        <td align="right">160.1</td>
+        <td align="right">-0.06</td>
+        <td align="right">4.75</td>
+        </tr>
+        <tr>
+        <td>1997-06-01</td>
+        <td align="right">160.3</td>
+        <td align="right">0.12</td>
+        <td align="right">4.75</td>
+        </tr>
+        <tr>
+        <td>1997-07-01</td>
+        <td align="right">160.5</td>
+        <td align="right">0.12</td>
+        <td align="right">4.75</td>
+        </tr>
+        <tr>
+        <td>1997-08-01</td>
+        <td align="right">160.8</td>
+        <td align="right">0.19</td>
+        <td align="right">4.75</td>
+        </tr>
+        <tr>
+        <td>1997-09-01</td>
+        <td align="right">161.2</td>
+        <td align="right">0.25</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1997-10-01</td>
+        <td align="right">161.6</td>
+        <td align="right">0.25</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1997-11-01</td>
+        <td align="right">161.5</td>
+        <td align="right">-0.06</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1997-12-01</td>
+        <td align="right">161.3</td>
+        <td align="right">-0.12</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1998-01-01</td>
+        <td align="right">161.6</td>
+        <td align="right">0.19</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1998-02-01</td>
+        <td align="right">161.9</td>
+        <td align="right">0.19</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1998-03-01</td>
+        <td align="right">162.2</td>
+        <td align="right">0.19</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1998-04-01</td>
+        <td align="right">162.5</td>
+        <td align="right">0.18</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1998-05-01</td>
+        <td align="right">162.8</td>
+        <td align="right">0.18</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1998-06-01</td>
+        <td align="right">163.0</td>
+        <td align="right">0.12</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1998-07-01</td>
+        <td align="right">163.2</td>
+        <td align="right">0.12</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1998-08-01</td>
+        <td align="right">163.4</td>
+        <td align="right">0.12</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1998-09-01</td>
+        <td align="right">163.6</td>
+        <td align="right">0.12</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1998-10-01</td>
+        <td align="right">164.0</td>
+        <td align="right">0.24</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1998-11-01</td>
+        <td align="right">164.0</td>
+        <td align="right">0.0</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1998-12-01</td>
+        <td align="right">163.9</td>
+        <td align="right">-0.06</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1999-01-01</td>
+        <td align="right">164.3</td>
+        <td align="right">0.24</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1999-02-01</td>
+        <td align="right">164.5</td>
+        <td align="right">0.12</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1999-03-01</td>
+        <td align="right">165.0</td>
+        <td align="right">0.3</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1999-04-01</td>
+        <td align="right">166.2</td>
+        <td align="right">0.73</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1999-05-01</td>
+        <td align="right">166.2</td>
+        <td align="right">0.0</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1999-06-01</td>
+        <td align="right">166.2</td>
+        <td align="right">0.0</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1999-07-01</td>
+        <td align="right">166.7</td>
+        <td align="right">0.3</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1999-08-01</td>
+        <td align="right">167.1</td>
+        <td align="right">0.24</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1999-09-01</td>
+        <td align="right">167.9</td>
+        <td align="right">0.48</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1999-10-01</td>
+        <td align="right">168.2</td>
+        <td align="right">0.18</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1999-11-01</td>
+        <td align="right">168.3</td>
+        <td align="right">0.06</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>1999-12-01</td>
+        <td align="right">168.3</td>
+        <td align="right">0.0</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2000-01-01</td>
+        <td align="right">168.8</td>
+        <td align="right">0.3</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2000-02-01</td>
+        <td align="right">169.8</td>
+        <td align="right">0.59</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2000-03-01</td>
+        <td align="right">171.2</td>
+        <td align="right">0.82</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2000-04-01</td>
+        <td align="right">171.3</td>
+        <td align="right">0.06</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2000-05-01</td>
+        <td align="right">171.5</td>
+        <td align="right">0.12</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2000-06-01</td>
+        <td align="right">172.4</td>
+        <td align="right">0.52</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2000-07-01</td>
+        <td align="right">172.8</td>
+        <td align="right">0.23</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2000-08-01</td>
+        <td align="right">172.8</td>
+        <td align="right">0.0</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2000-09-01</td>
+        <td align="right">173.7</td>
+        <td align="right">0.52</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2000-10-01</td>
+        <td align="right">174.0</td>
+        <td align="right">0.17</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2000-11-01</td>
+        <td align="right">174.1</td>
+        <td align="right">0.06</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2000-12-01</td>
+        <td align="right">174.0</td>
+        <td align="right">-0.06</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2001-01-01</td>
+        <td align="right">175.1</td>
+        <td align="right">0.63</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2001-02-01</td>
+        <td align="right">175.8</td>
+        <td align="right">0.4</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2001-03-01</td>
+        <td align="right">176.2</td>
+        <td align="right">0.23</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2001-04-01</td>
+        <td align="right">176.9</td>
+        <td align="right">0.4</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2001-05-01</td>
+        <td align="right">177.7</td>
+        <td align="right">0.45</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2001-06-01</td>
+        <td align="right">178.0</td>
+        <td align="right">0.17</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2001-07-01</td>
+        <td align="right">177.5</td>
+        <td align="right">-0.28</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2001-08-01</td>
+        <td align="right">177.5</td>
+        <td align="right">0.0</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2001-09-01</td>
+        <td align="right">178.3</td>
+        <td align="right">0.45</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2001-10-01</td>
+        <td align="right">177.7</td>
+        <td align="right">-0.34</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2001-11-01</td>
+        <td align="right">177.4</td>
+        <td align="right">-0.17</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2001-12-01</td>
+        <td align="right">176.7</td>
+        <td align="right">-0.39</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2002-01-01</td>
+        <td align="right">177.1</td>
+        <td align="right">0.23</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2002-02-01</td>
+        <td align="right">177.8</td>
+        <td align="right">0.4</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2002-03-01</td>
+        <td align="right">178.8</td>
+        <td align="right">0.56</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2002-04-01</td>
+        <td align="right">179.8</td>
+        <td align="right">0.56</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2002-05-01</td>
+        <td align="right">179.8</td>
+        <td align="right">0.0</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2002-06-01</td>
+        <td align="right">179.9</td>
+        <td align="right">0.06</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2002-07-01</td>
+        <td align="right">180.1</td>
+        <td align="right">0.11</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2002-08-01</td>
+        <td align="right">180.7</td>
+        <td align="right">0.33</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2002-09-01</td>
+        <td align="right">181.0</td>
+        <td align="right">0.17</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2002-10-01</td>
+        <td align="right">181.3</td>
+        <td align="right">0.17</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2002-11-01</td>
+        <td align="right">181.3</td>
+        <td align="right">0.0</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2002-12-01</td>
+        <td align="right">180.9</td>
+        <td align="right">-0.22</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2003-01-01</td>
+        <td align="right">181.7</td>
+        <td align="right">0.44</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2003-02-01</td>
+        <td align="right">183.1</td>
+        <td align="right">0.77</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2003-03-01</td>
+        <td align="right">184.2</td>
+        <td align="right">0.6</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2003-04-01</td>
+        <td align="right">183.8</td>
+        <td align="right">-0.22</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2003-05-01</td>
+        <td align="right">183.5</td>
+        <td align="right">-0.16</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2003-06-01</td>
+        <td align="right">183.7</td>
+        <td align="right">0.11</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2003-07-01</td>
+        <td align="right">183.9</td>
+        <td align="right">0.11</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2003-08-01</td>
+        <td align="right">184.6</td>
+        <td align="right">0.38</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2003-09-01</td>
+        <td align="right">185.2</td>
+        <td align="right">0.33</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2003-10-01</td>
+        <td align="right">185.0</td>
+        <td align="right">-0.11</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2003-11-01</td>
+        <td align="right">184.5</td>
+        <td align="right">-0.27</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2003-12-01</td>
+        <td align="right">184.3</td>
+        <td align="right">-0.11</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2004-01-01</td>
+        <td align="right">185.2</td>
+        <td align="right">0.49</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2004-02-01</td>
+        <td align="right">186.2</td>
+        <td align="right">0.54</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2004-03-01</td>
+        <td align="right">187.4</td>
+        <td align="right">0.64</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2004-04-01</td>
+        <td align="right">188.0</td>
+        <td align="right">0.32</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2004-05-01</td>
+        <td align="right">189.1</td>
+        <td align="right">0.59</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2004-06-01</td>
+        <td align="right">189.7</td>
+        <td align="right">0.32</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2004-07-01</td>
+        <td align="right">189.4</td>
+        <td align="right">-0.16</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2004-08-01</td>
+        <td align="right">189.5</td>
+        <td align="right">0.05</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2004-09-01</td>
+        <td align="right">189.9</td>
+        <td align="right">0.21</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2004-10-01</td>
+        <td align="right">190.9</td>
+        <td align="right">0.53</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2004-11-01</td>
+        <td align="right">191.0</td>
+        <td align="right">0.05</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2004-12-01</td>
+        <td align="right">190.3</td>
+        <td align="right">-0.37</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2005-01-01</td>
+        <td align="right">190.7</td>
+        <td align="right">0.21</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2005-02-01</td>
+        <td align="right">191.8</td>
+        <td align="right">0.58</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2005-03-01</td>
+        <td align="right">193.3</td>
+        <td align="right">0.78</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2005-04-01</td>
+        <td align="right">194.6</td>
+        <td align="right">0.67</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2005-05-01</td>
+        <td align="right">194.4</td>
+        <td align="right">-0.1</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2005-06-01</td>
+        <td align="right">194.5</td>
+        <td align="right">0.05</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2005-07-01</td>
+        <td align="right">195.4</td>
+        <td align="right">0.46</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2005-08-01</td>
+        <td align="right">196.4</td>
+        <td align="right">0.51</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2005-09-01</td>
+        <td align="right">198.8</td>
+        <td align="right">1.22</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2005-10-01</td>
+        <td align="right">199.2</td>
+        <td align="right">0.2</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2005-11-01</td>
+        <td align="right">197.6</td>
+        <td align="right">-0.8</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2005-12-01</td>
+        <td align="right">196.8</td>
+        <td align="right">-0.4</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2006-01-01</td>
+        <td align="right">198.3</td>
+        <td align="right">0.76</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2006-02-01</td>
+        <td align="right">198.7</td>
+        <td align="right">0.2</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2006-03-01</td>
+        <td align="right">199.8</td>
+        <td align="right">0.55</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2006-04-01</td>
+        <td align="right">201.5</td>
+        <td align="right">0.85</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2006-05-01</td>
+        <td align="right">202.5</td>
+        <td align="right">0.5</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2006-06-01</td>
+        <td align="right">202.9</td>
+        <td align="right">0.2</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2006-07-01</td>
+        <td align="right">203.5</td>
+        <td align="right">0.3</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2006-08-01</td>
+        <td align="right">203.9</td>
+        <td align="right">0.2</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2006-09-01</td>
+        <td align="right">202.9</td>
+        <td align="right">-0.49</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2006-10-01</td>
+        <td align="right">201.8</td>
+        <td align="right">-0.54</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2006-11-01</td>
+        <td align="right">201.5</td>
+        <td align="right">-0.15</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2006-12-01</td>
+        <td align="right">201.8</td>
+        <td align="right">0.15</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2007-01-01</td>
+        <td align="right">202.416</td>
+        <td align="right">0.31</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2007-02-01</td>
+        <td align="right">203.49900000000002</td>
+        <td align="right">0.54</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2007-03-01</td>
+        <td align="right">205.352</td>
+        <td align="right">0.91</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2007-04-01</td>
+        <td align="right">206.68599999999998</td>
+        <td align="right">0.65</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2007-05-01</td>
+        <td align="right">207.949</td>
+        <td align="right">0.61</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2007-06-01</td>
+        <td align="right">208.352</td>
+        <td align="right">0.19</td>
+        <td align="right">5.15</td>
+        </tr>
+        <tr>
+        <td>2007-07-01</td>
+        <td align="right">208.299</td>
+        <td align="right">-0.03</td>
+        <td align="right">5.85</td>
+        </tr>
+        <tr>
+        <td>2007-08-01</td>
+        <td align="right">207.917</td>
+        <td align="right">-0.18</td>
+        <td align="right">5.85</td>
+        </tr>
+        <tr>
+        <td>2007-09-01</td>
+        <td align="right">208.49</td>
+        <td align="right">0.28</td>
+        <td align="right">5.85</td>
+        </tr>
+        <tr>
+        <td>2007-10-01</td>
+        <td align="right">208.93599999999998</td>
+        <td align="right">0.21</td>
+        <td align="right">5.85</td>
+        </tr>
+        <tr>
+        <td>2007-11-01</td>
+        <td align="right">210.17700000000002</td>
+        <td align="right">0.59</td>
+        <td align="right">5.85</td>
+        </tr>
+        <tr>
+        <td>2007-12-01</td>
+        <td align="right">210.03599999999997</td>
+        <td align="right">-0.07</td>
+        <td align="right">5.85</td>
+        </tr>
+        <tr>
+        <td>2008-01-01</td>
+        <td align="right">211.08</td>
+        <td align="right">0.5</td>
+        <td align="right">5.85</td>
+        </tr>
+        <tr>
+        <td>2008-02-01</td>
+        <td align="right">211.69299999999998</td>
+        <td align="right">0.29</td>
+        <td align="right">5.85</td>
+        </tr>
+        <tr>
+        <td>2008-03-01</td>
+        <td align="right">213.528</td>
+        <td align="right">0.87</td>
+        <td align="right">5.85</td>
+        </tr>
+        <tr>
+        <td>2008-04-01</td>
+        <td align="right">214.82299999999998</td>
+        <td align="right">0.61</td>
+        <td align="right">5.85</td>
+        </tr>
+        <tr>
+        <td>2008-05-01</td>
+        <td align="right">216.632</td>
+        <td align="right">0.84</td>
+        <td align="right">5.85</td>
+        </tr>
+        <tr>
+        <td>2008-06-01</td>
+        <td align="right">218.815</td>
+        <td align="right">1.01</td>
+        <td align="right">5.85</td>
+        </tr>
+        <tr>
+        <td>2008-07-01</td>
+        <td align="right">219.96400000000003</td>
+        <td align="right">0.53</td>
+        <td align="right">6.55</td>
+        </tr>
+        <tr>
+        <td>2008-08-01</td>
+        <td align="right">219.08599999999998</td>
+        <td align="right">-0.4</td>
+        <td align="right">6.55</td>
+        </tr>
+        <tr>
+        <td>2008-09-01</td>
+        <td align="right">218.783</td>
+        <td align="right">-0.14</td>
+        <td align="right">6.55</td>
+        </tr>
+        <tr>
+        <td>2008-10-01</td>
+        <td align="right">216.57299999999998</td>
+        <td align="right">-1.01</td>
+        <td align="right">6.55</td>
+        </tr>
+        <tr>
+        <td>2008-11-01</td>
+        <td align="right">212.425</td>
+        <td align="right">-1.92</td>
+        <td align="right">6.55</td>
+        </tr>
+        <tr>
+        <td>2008-12-01</td>
+        <td align="right">210.22799999999998</td>
+        <td align="right">-1.03</td>
+        <td align="right">6.55</td>
+        </tr>
+        <tr>
+        <td>2009-01-01</td>
+        <td align="right">211.143</td>
+        <td align="right">0.44</td>
+        <td align="right">6.55</td>
+        </tr>
+        <tr>
+        <td>2009-02-01</td>
+        <td align="right">212.19299999999998</td>
+        <td align="right">0.5</td>
+        <td align="right">6.55</td>
+        </tr>
+        <tr>
+        <td>2009-03-01</td>
+        <td align="right">212.709</td>
+        <td align="right">0.24</td>
+        <td align="right">6.55</td>
+        </tr>
+        <tr>
+        <td>2009-04-01</td>
+        <td align="right">213.24</td>
+        <td align="right">0.25</td>
+        <td align="right">6.55</td>
+        </tr>
+        <tr>
+        <td>2009-05-01</td>
+        <td align="right">213.856</td>
+        <td align="right">0.29</td>
+        <td align="right">6.55</td>
+        </tr>
+        <tr>
+        <td>2009-06-01</td>
+        <td align="right">215.69299999999998</td>
+        <td align="right">0.86</td>
+        <td align="right">6.55</td>
+        </tr>
+        <tr>
+        <td>2009-07-01</td>
+        <td align="right">215.351</td>
+        <td align="right">-0.16</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2009-08-01</td>
+        <td align="right">215.834</td>
+        <td align="right">0.22</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2009-09-01</td>
+        <td align="right">215.96900000000002</td>
+        <td align="right">0.06</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2009-10-01</td>
+        <td align="right">216.17700000000002</td>
+        <td align="right">0.1</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2009-11-01</td>
+        <td align="right">216.33</td>
+        <td align="right">0.07</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2009-12-01</td>
+        <td align="right">215.949</td>
+        <td align="right">-0.18</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2010-01-01</td>
+        <td align="right">216.687</td>
+        <td align="right">0.34</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2010-02-01</td>
+        <td align="right">216.74099999999999</td>
+        <td align="right">0.02</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2010-03-01</td>
+        <td align="right">217.63099999999997</td>
+        <td align="right">0.41</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2010-04-01</td>
+        <td align="right">218.00900000000001</td>
+        <td align="right">0.17</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2010-05-01</td>
+        <td align="right">218.178</td>
+        <td align="right">0.08</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2010-06-01</td>
+        <td align="right">217.965</td>
+        <td align="right">-0.1</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2010-07-01</td>
+        <td align="right">218.011</td>
+        <td align="right">0.02</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2010-08-01</td>
+        <td align="right">218.312</td>
+        <td align="right">0.14</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2010-09-01</td>
+        <td align="right">218.43900000000002</td>
+        <td align="right">0.06</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2010-10-01</td>
+        <td align="right">218.71099999999998</td>
+        <td align="right">0.12</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2010-11-01</td>
+        <td align="right">218.803</td>
+        <td align="right">0.04</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2010-12-01</td>
+        <td align="right">219.179</td>
+        <td align="right">0.17</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2011-01-01</td>
+        <td align="right">220.22299999999998</td>
+        <td align="right">0.48</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2011-02-01</td>
+        <td align="right">221.30900000000003</td>
+        <td align="right">0.49</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2011-03-01</td>
+        <td align="right">223.467</td>
+        <td align="right">0.98</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2011-04-01</td>
+        <td align="right">224.90599999999998</td>
+        <td align="right">0.64</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2011-05-01</td>
+        <td align="right">225.96400000000003</td>
+        <td align="right">0.47</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2011-06-01</td>
+        <td align="right">225.722</td>
+        <td align="right">-0.11</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2011-07-01</td>
+        <td align="right">225.922</td>
+        <td align="right">0.09</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2011-08-01</td>
+        <td align="right">226.545</td>
+        <td align="right">0.28</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2011-09-01</td>
+        <td align="right">226.889</td>
+        <td align="right">0.15</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2011-10-01</td>
+        <td align="right">226.421</td>
+        <td align="right">-0.21</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2011-11-01</td>
+        <td align="right">226.23</td>
+        <td align="right">-0.08</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2011-12-01</td>
+        <td align="right">225.672</td>
+        <td align="right">-0.25</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2012-01-01</td>
+        <td align="right">226.665</td>
+        <td align="right">0.44</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2012-02-01</td>
+        <td align="right">227.66299999999998</td>
+        <td align="right">0.44</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2012-03-01</td>
+        <td align="right">229.392</td>
+        <td align="right">0.76</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2012-04-01</td>
+        <td align="right">230.085</td>
+        <td align="right">0.3</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2012-05-01</td>
+        <td align="right">229.815</td>
+        <td align="right">-0.12</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2012-06-01</td>
+        <td align="right">229.47799999999998</td>
+        <td align="right">-0.15</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2012-07-01</td>
+        <td align="right">229.104</td>
+        <td align="right">-0.16</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2012-08-01</td>
+        <td align="right">230.37900000000002</td>
+        <td align="right">0.56</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2012-09-01</td>
+        <td align="right">231.407</td>
+        <td align="right">0.45</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2012-10-01</td>
+        <td align="right">231.317</td>
+        <td align="right">-0.04</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2012-11-01</td>
+        <td align="right">230.22099999999998</td>
+        <td align="right">-0.47</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2012-12-01</td>
+        <td align="right">229.601</td>
+        <td align="right">-0.27</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2013-01-01</td>
+        <td align="right">230.28</td>
+        <td align="right">0.3</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2013-02-01</td>
+        <td align="right">232.166</td>
+        <td align="right">0.82</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2013-03-01</td>
+        <td align="right">232.773</td>
+        <td align="right">0.26</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2013-04-01</td>
+        <td align="right">232.53099999999998</td>
+        <td align="right">-0.1</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2013-05-01</td>
+        <td align="right">232.945</td>
+        <td align="right">0.18</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2013-06-01</td>
+        <td align="right">233.50400000000002</td>
+        <td align="right">0.24</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2013-07-01</td>
+        <td align="right">233.59599999999998</td>
+        <td align="right">0.04</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2013-08-01</td>
+        <td align="right">233.877</td>
+        <td align="right">0.12</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2013-09-01</td>
+        <td align="right">234.149</td>
+        <td align="right">0.12</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2013-10-01</td>
+        <td align="right">233.546</td>
+        <td align="right">-0.26</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2013-11-01</td>
+        <td align="right">233.06900000000002</td>
+        <td align="right">-0.2</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2013-12-01</td>
+        <td align="right">233.049</td>
+        <td align="right">-0.01</td>
+        <td align="right">7.25</td>
+        </tr>
+        <tr>
+        <td>2014-01-01</td>
+        <td align="right">233.916</td>
+        <td align="right">0.37</td>
+        <td align="right">7.25</td>
+    </tr>
+</tbody></table>
+
+<footer>
+    <div class="footer">&copy;Brantax&trade;<br>
+    Anton Mendoza, Max Winder, and Brandon Hevley </div>
+</footer>
+
+</html>
