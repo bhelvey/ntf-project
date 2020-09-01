@@ -5,14 +5,12 @@
   <meta charset="UTF-8">
   <title>Inflation</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    
     <!--Navbar adjustments-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -20,12 +18,11 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Plots
+                            Topics
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <!-- wages -->
@@ -37,8 +34,7 @@
                             <!-- How It Ties Together -->
                             <a class="dropdown-item" href="analysis">How Does It All Tie Together?</a>
                             <!-- Machine Learning -->
-                            <a class="dropdown-item" href="ML">Machine Learning: Predicting the Future?</a>
-                            
+                            <a class="dropdown-item" href="ML">Machine Learning: Predicting the Future?</a>    
                         </div>
 
                         <a class="nav-link" href="data">Data</a>
@@ -60,15 +56,20 @@
                     <img src="../static/images/pepesilvia.jpg" width="100%" alt="pepe silvia">
                     <br>
                     <p>So what does all this mean? <br>
-                    For a lot of Americans, the federal minimum wage is the difference between poverty and a living wage.
-                     A missed paycheck or reduced hours could mean not eating, or losing their home. 
+                       For a lot of Americans, the federal minimum wage is the difference between poverty and a living wage.
+                       A missed paycheck or reduced hours could mean not eating, or losing their home. 
                     </p>
+                    <img src="../static/images/cpi_annual.png" width="100%" alt="pepe silvia">
+                    <img src="../static/images/cpi_since_1970" width="100%" alt="pepe silvia">
+                    <img src="../static/images/min_wage" width="100%" alt="pepe silvia">
                     <p>
-                        In the two graphs below we take a look at the incresaing CPI rate from 1970-2013. As you can see,
-                         all but one year during this time we see a positive increase over the previous year. To better illustrate
-                          the compounding increases, the second chart shows a given year's CPI rate compared to 1970.
+                        In the above graphs we can see the increasing rates of CPI Inflation, both year to year (Figure 1) and 
+                        the percentage increase since 1970 (Figure 2). It is important to note that inflation increases every year
+                        with the exception of 1 year during this period: 2009. In the final chart, we take a look at the percentage
+                        increase of minimum wage compared to the starting year (1970). What we observe is that CPI inflation has risen
+                        500% from 1970-2013, while minimum wage has increased from 1.45 to 7.25 a 400% increase.
                     </p>
-                    <img src="../static/images/cpi_chart.png" width="100%" alt="pepe silvia">
+
                 </div>   
             </div>
         </div>    
